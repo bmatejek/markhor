@@ -1,5 +1,12 @@
+import os
 import h5py
+
+
+
 import numpy as np
+
+
+
 from PIL import Image
 
 
@@ -10,6 +17,10 @@ def ConvertH52ImageStack(prefix):
         data = np.array(hf[list(hf.keys())[0]]).astype(np.uint8)
 
     zres, yres, xres = data.shape
+
+    # create the directory if it does not already exist
+    if not os.path.exists('images/{}'.format(prefix)):
+        os.mkdir('images/{}'.format(prefix))
 
     for iz in range(zres):
         image = Image.fromarray(data[iz,:,:])
