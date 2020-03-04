@@ -1,4 +1,5 @@
 import os
+import time
 
 
 
@@ -11,6 +12,9 @@ from markhor.utilities.dataIO import ReadH5File
 
 
 def ConvertH52ImageStack(prefix):
+    # start statistics
+    start_time = time.time()
+
     # read in the raw image data uint8
     data = ReadH5File(prefix)
 
@@ -25,4 +29,6 @@ def ConvertH52ImageStack(prefix):
 
         filename = 'images/{}/{:06d}.png'.format(prefix, iz)
 
-        image.save(filename)
+        image.save(filename, optimize=True)
+
+    print ('Converted {} in {:0.2f} seconds.'.format(prefix, time.time() - start_time))
