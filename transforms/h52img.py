@@ -1,9 +1,4 @@
 import os
-import h5py
-
-
-
-import numpy as np
 
 
 
@@ -11,10 +6,13 @@ from PIL import Image
 
 
 
+from markhor.utilities.dataIO import ReadH5File
+
+
+
 def ConvertH52ImageStack(prefix):
     # read in the raw image data uint8
-    with h5py.File('images/{}.h5'.format(prefix), 'r') as hf:
-        data = np.array(hf[list(hf.keys())[0]]).astype(np.uint8)
+    data = ReadH5File(prefix)
 
     zres, yres, xres = data.shape
 
