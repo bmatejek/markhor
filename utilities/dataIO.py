@@ -41,7 +41,7 @@ def ReadPNGFiles(prefix):
 
 def ReadJPEGFiles(prefix, parameters):
     # only one parameter corresponding to quality
-    compressed_files = sorted(glob.glob('jpegs/{}/*-{:02d}.jpg'.format(prefix, parameters['Quality'])))
+    compressed_files = sorted(glob.glob('jpegs/{}/*-{}.jpg'.format(prefix, parameters['Quality'])))
 
     for iz, filename in enumerate(compressed_files):
         img = np.array(Image.open(filename)).astype(np.uint8)
